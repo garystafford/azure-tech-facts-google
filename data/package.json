@@ -1,0 +1,18 @@
+{
+  "name": "upsert-entities-datastore",
+  "description": "Upsert entities into datastore",
+  "version": "1.0.0",
+  "private": true,
+  "license": "Apache Version 2.0",
+  "author": "Gary A. Stafford",
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {},
+  "dependencies": {
+    "@google-cloud/datastore": "^1.4.1"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^2.3.3"
+  }
+}
