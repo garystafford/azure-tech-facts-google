@@ -1,3 +1,7 @@
+// author: Gary A. Stafford
+// site: https://programmaticponderings.com
+// license: MIT License
+
 'use strict';
 
 // Import the Dialogflow module from the Actions on Google client library.
@@ -7,6 +11,7 @@ const {
     BasicCard,
     Button,
     SimpleResponse,
+    Image,
 } = require('actions-on-google');
 
 // Import the firebase-functions package for deployment.
@@ -28,6 +33,10 @@ app.middleware(conv => {
 
 // GCP Storage Bucket path
 const BUCKET = 'https://storage.googleapis.com/azure-tech-facts';
+
+const SUGGESTION_1 = 'Tell me a random fact';
+const SUGGESTION_2 = 'Tell me about platforms';
+const SUGGESTION_3 = 'Goodbye';
 
 // Build the response
 function buildFactResponseDatastore(factToQuery) {
@@ -66,25 +75,62 @@ app.intent('Azure Facts Intent', async (conv, {facts}) => {
     // Respond with a fact and end the conversation.
     let fact = await buildFactResponseDatastore(factToQuery);
 
-    if (conv.hasScreen) {
-        // conv.ask(fact.response);
-        conv.close(new BasicCard({
-            title: fact.title,
-            image: `${BUCKET}/${fact.image}`,
-            alt: fact.title,
-            url: 'https://azure.microsoft.com'
-        }));
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+        conv.ask(fact.response);
+        return;
     }
-    // conv.close(new SimpleResponse({
-    //     speech: fact.response,
-    //     text: fact.response,
-    // }));
 
-    // conv.close(fact.response);
+    conv.ask(new SimpleResponse({
+        speech: fact.response,
+    }));
+
+    // Create a basic card
+    conv.ask(new BasicCard({
+        text: fact.response,
+        title: fact.title,
+        image: new Image({
+            url: `${BUCKET}/${fact.image}`,
+            alt: fact.title,
+        }),
+        display: 'CROPPED',
+    }));
+
+    conv.ask(new Suggestions([SUGGESTION_2, SUGGESTION_3]));
+
 });
 
-app.intent('Default Welcome Intent', conv => {
-    conv.ask('Hi, I am in welcome intent.')
+app.intent('Welcome Intent', conv => {
+    const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure? ' +
+        'You can say things like, tell me about Azure\'s global infrastructure, ' +
+        'or when was Azure released.';
+    const WELCOME_TEXT_LONG = 'What would you like to know about Microsoft Azure? ' +
+        'You can say things like, tell me about Azure\'s global infrastructure, ' +
+        'or when was Azure released.';
+    const WELCOME_IMAGE = 'azure-logo-192x192.png';
+
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+        conv.ask(WELCOME_TEXT_SHORT);
+        return;
+    }
+
+    conv.ask(new SimpleResponse({
+        speech: WELCOME_TEXT_SHORT,
+        text: WELCOME_TEXT_SHORT,
+    }));
+
+    // Create a basic card
+    conv.ask(new BasicCard({
+        text: WELCOME_TEXT_LONG,
+        title: 'Azure Tech Facts',
+        image: new Image({
+            url: `${BUCKET}/${WELCOME_IMAGE}`,
+            alt: 'Azure Tech Facts',
+        }),
+        display: 'CROPPED',
+    }));
+
+    conv.ask(new Suggestions(SUGGESTION_1));
+
 });
 
 // Set the DialogflowApp object to handle the HTTPS POST request.

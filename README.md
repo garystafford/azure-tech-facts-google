@@ -2,6 +2,7 @@
 - <https://github.com/googleapis/nodejs-datastore/tree/master/samples>
 - <https://cloud.google.com/datastore/docs/concepts/queries>
 - <https://github.com/actions-on-google/actions-on-google-nodejs/issues/174>
+-<https://developers.google.com/actions/assistant/responses>
 
 ```bash
 export PROJECT_ID="payx-tech-facts"

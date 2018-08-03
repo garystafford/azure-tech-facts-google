@@ -62,7 +62,7 @@ const entities = [{
       },
       {
         name: "title",
-        value: "Release Date",
+        value: "Azure Release Date",
         excludeFromIndexes: true,
       },
       {
@@ -98,7 +98,7 @@ const entities = [{
       },
       {
         name: "title",
-        value: "Regions",
+        value: "Azure Regions",
         excludeFromIndexes: true,
       },
       {
@@ -116,7 +116,7 @@ const entities = [{
       },
       {
         name: "title",
-        value: "Geographies",
+        value: "Azure Geography",
         excludeFromIndexes: true,
       },
       {
@@ -134,7 +134,7 @@ const entities = [{
       },
       {
         name: "title",
-        value: "Platforms",
+        value: "Azure Platforms",
         excludeFromIndexes: true,
       },
       {
@@ -188,7 +188,7 @@ const entities = [{
       },
       {
         name: "title",
-        value: "Congnitive Services",
+        value: "Cognitive Services",
         excludeFromIndexes: true,
       },
       {
@@ -242,7 +242,7 @@ const entities = [{
       },
       {
         name: "title",
-        value: "Certifications",
+        value: "Azure Certifications",
         excludeFromIndexes: true,
       },
       {
@@ -260,7 +260,7 @@ const entities = [{
       },
       {
         name: "title",
-        value: "Competition",
+        value: "Azure's Competition",
         excludeFromIndexes: true,
       },
       {
