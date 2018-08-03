@@ -4,7 +4,6 @@
 
 'use strict';
 
-// Import the Dialogflow module from the Actions on Google client library.
 const {
     dialogflow,
     Suggestions,
@@ -14,10 +13,7 @@ const {
     Image,
 } = require('actions-on-google');
 
-// Import the firebase-functions package for deployment.
 const functions = require('firebase-functions');
-
-// Import the Google Datastore module
 const Datastore = require('@google-cloud/datastore');
 const datastore = new Datastore({});
 
@@ -32,10 +28,10 @@ app.middleware(conv => {
 });
 
 // GCP Storage Bucket path
-const BUCKET = 'https://storage.googleapis.com/azure-tech-facts';
+const IMAGE_BUCKET = 'https://storage.googleapis.com/azure-tech-facts';
 
 const SUGGESTION_1 = 'Tell me a random fact';
-const SUGGESTION_2 = 'Tell me about platforms';
+const SUGGESTION_2 = 'Cognitive Services?';
 const SUGGESTION_3 = 'Goodbye';
 
 // Build the response
@@ -72,7 +68,7 @@ function buildFactResponseDatastore(factToQuery) {
 app.intent('Azure Facts Intent', async (conv, {facts}) => {
     const factToQuery = facts.toString();
 
-    // Respond with a fact and end the conversation.
+    // Respond with a fact
     let fact = await buildFactResponseDatastore(factToQuery);
 
     if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
@@ -89,23 +85,22 @@ app.intent('Azure Facts Intent', async (conv, {facts}) => {
         text: fact.response,
         title: fact.title,
         image: new Image({
-            url: `${BUCKET}/${fact.image}`,
+            url: `${IMAGE_BUCKET}/${fact.image}`,
             alt: fact.title,
         }),
         display: 'CROPPED',
     }));
 
-    conv.ask(new Suggestions([SUGGESTION_2, SUGGESTION_3]));
+    conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2]));
 
 });
 
 app.intent('Welcome Intent', conv => {
-    const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure? ' +
-        'You can say things like, tell me about Azure\'s global infrastructure, ' +
-        'or when was Azure released.';
+    const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure?';
     const WELCOME_TEXT_LONG = 'What would you like to know about Microsoft Azure? ' +
-        'You can say things like, tell me about Azure\'s global infrastructure, ' +
-        'or when was Azure released.';
+        'You can say things like:  \n' +
+        '_Tell me about Azure\'s global infrastructure_  \n' +
+        '_When was Azure released?_';
     const WELCOME_IMAGE = 'azure-logo-192x192.png';
 
     if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
@@ -123,13 +118,13 @@ app.intent('Welcome Intent', conv => {
         text: WELCOME_TEXT_LONG,
         title: 'Azure Tech Facts',
         image: new Image({
-            url: `${BUCKET}/${WELCOME_IMAGE}`,
+            url: `${IMAGE_BUCKET}/${WELCOME_IMAGE}`,
             alt: 'Azure Tech Facts',
         }),
         display: 'CROPPED',
     }));
 
-    conv.ask(new Suggestions(SUGGESTION_1));
+    conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2]));
 
 });
 

@@ -3,6 +3,8 @@
 - <https://cloud.google.com/datastore/docs/concepts/queries>
 - <https://github.com/actions-on-google/actions-on-google-nodejs/issues/174>
 -<https://developers.google.com/actions/assistant/responses>
+-<https://github.com/actions-on-google/dialogflow-facts-about-google-nodejs/blob/master/functions/index.js>
+
 
 ```bash
 export PROJECT_ID="payx-tech-facts"
