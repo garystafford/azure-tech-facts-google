@@ -38,7 +38,7 @@ const entities = [{
     key: datastore.key(["AzureFact", "description"]),
     data: [{
         name: "response",
-        value: "according to Wikipedia, Microsoft Azure is a cloud computing service created by Microsoft for building, testing, deploying, and managing applications and services through a global network of Microsoft-managed data centers.",
+        value: "According to Wikipedia, Microsoft Azure is a cloud computing service created by Microsoft for building, testing, deploying, and managing applications and services through a global network of Microsoft-managed data centers.",
         excludeFromIndexes: true,
       },
       {
@@ -57,7 +57,7 @@ const entities = [{
     key: datastore.key(["AzureFact", "released"]),
     data: [{
         name: "response",
-        value: "according to Wikipedia, Azure was released on February 1, 2010 as 'Windows Azure' before being renamed 'Microsoft Azure' on March 25, 2014.",
+        value: "According to Wikipedia, Azure was released on February 1, 2010 as 'Windows Azure' before being renamed 'Microsoft Azure' on March 25, 2014.",
         excludeFromIndexes: true,
       },
       {
@@ -75,7 +75,7 @@ const entities = [{
     key: datastore.key(["AzureFact", "global"]),
     data: [{
         name: "response",
-        value: "according to Microsoft, with 54 Azure regions, Azure has more global regions than any other cloud provider. Azure is currently available in 140 countries.",
+        value: "According to Microsoft, with 54 Azure regions, Azure has more global regions than any other cloud provider. Azure is currently available in 140 countries.",
         excludeFromIndexes: true,
       },
       {
@@ -93,7 +93,7 @@ const entities = [{
     key: datastore.key(["AzureFact", "regions"]),
     data: [{
         name: "response",
-        value: "according to Microsoft, an Azure region is a set of datacenters deployed within a latency-defined perimeter and connected through a dedicated regional low-latency network.",
+        value: "According to Microsoft, an Azure region is a set of datacenters deployed within a latency-defined perimeter and connected through a dedicated regional low-latency network.",
         excludeFromIndexes: true,
       },
       {
@@ -111,7 +111,7 @@ const entities = [{
     key: datastore.key(["AzureFact", "geographies"]),
     data: [{
         name: "response",
-        value: "according to Microsoft, Azure regions are organized into geographies. An Azure geography ensures that data residency, sovereignty, compliance, and resiliency requirements are honored within geographical boundaries.",
+        value: "According to Microsoft, Azure regions are organized into geographies. An Azure geography ensures that data residency, sovereignty, compliance, and resiliency requirements are honored within geographical boundaries.",
         excludeFromIndexes: true,
       },
       {
@@ -129,7 +129,7 @@ const entities = [{
     key: datastore.key(["AzureFact", "platforms"]),
     data: [{
         name: "response",
-        value: "according to Wikipedia, Azure provides Software as a Service (SaaS), Containers as a Service (CaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS).",
+        value: "According to Wikipedia, Azure provides Software as a Service (SaaS), Containers as a Service (CaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS).",
         excludeFromIndexes: true,
       },
       {
@@ -219,7 +219,7 @@ const entities = [{
     key: datastore.key(["AzureFact", "first"]),
     data: [{
         name: "response",
-        value: "according to Wikipedia, Microsoft announced SQL Azure Relational Database in March, 2009. Other early Azure products included AppFabric Service Bus, Access Control, and Windows Azure Drive, according to Microsoft.",
+        value: "According to Wikipedia, Microsoft announced SQL Azure Relational Database in March, 2009. Other early Azure products included AppFabric Service Bus, Access Control, and Windows Azure Drive, According to Microsoft.",
         excludeFromIndexes: true,
       },
       {
@@ -255,7 +255,7 @@ const entities = [{
     key: datastore.key(["AzureFact", "competition"]),
     data: [{
         name: "response",
-        value: "according to the G2 Crowd website, Azure's Cloud competitors include Amazon Web Services (AWS), Digital Ocean, Google Compute Engine (GCE), and Rackspace.",
+        value: "According to the G2 Crowd website, Azure's Cloud competitors include Amazon Web Services (AWS), Digital Ocean, Google Compute Engine (GCE), and Rackspace.",
         excludeFromIndexes: true,
       },
       {

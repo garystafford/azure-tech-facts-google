@@ -24,8 +24,6 @@ const BUCKET = "https://storage.googleapis.com/azure-tech-facts"
 
 // Build the response
 function buildFactResponseDatastore(factToQuery) {
-    let prefixPlain = 'Azure has';
-
     // Return a random fact
     const FACTS_ARRAY = ["description", "released", "global", "regions",
         "geographies", "platforms", "categories", "products", "cognitive",
@@ -42,8 +40,9 @@ function buildFactResponseDatastore(factToQuery) {
         datastore
             .runQuery(query)
             .then(results => {
+                console.log(results[0][0]);
                 const factResponse = results[0][0];
-                resolve(`${prefixPlain} ${factResponse}`);
+                resolve(factResponse);
             })
             .catch(err => {
                 console.log(`Error: ${err}`);
@@ -56,16 +55,17 @@ function buildFactResponseDatastore(factToQuery) {
 // The intent collects a parameter named 'facts'.
 app.intent('Azure Facts Intent', async (conv, {facts}) => {
     const factToQuery = facts.toString();
+
     // Respond with a fact and end the conversation.
-    let response = await buildFactResponseDatastore(factToQuery);
+    let fact = await buildFactResponseDatastore(factToQuery);
+    // conv.ask(`${prefix} ${fact.response}`);
+    // conv.ask(new BasicCard({
+    //     title: fact.title,
+    //     image: `${BUCKET}/${fact.image}`,
+    //     alt: fact.title,
+    // }));
 
-    conv.ask(response.response);
-    conv.ask(new BasicCard({
-        title: response.title,
-        image: `${BUCKET}/${response.image}`,
-    }));
-
-    // conv.close(response.response);
+    conv.close(fact.response);
 });
 
 // Set the DialogflowApp object to handle the HTTPS POST request.
