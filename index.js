@@ -19,15 +19,22 @@ const datastore = new Datastore({});
 // Instantiate the Dialogflow client.
 const app = dialogflow({debug: true});
 
+app.middleware(conv => {
+    conv.hasScreen =
+        conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT');
+    conv.hasAudioPlayback =
+        conv.surface.capabilities.has('actions.capability.AUDIO_OUTPUT');
+});
+
 // GCP Storage Bucket path
-const BUCKET = "https://storage.googleapis.com/azure-tech-facts"
+const BUCKET = 'https://storage.googleapis.com/azure-tech-facts';
 
 // Build the response
 function buildFactResponseDatastore(factToQuery) {
     // Return a random fact
-    const FACTS_ARRAY = ["description", "released", "global", "regions",
-        "geographies", "platforms", "categories", "products", "cognitive",
-        "compliance", "first", "certifications", "competition"];
+    const FACTS_ARRAY = ['description', 'released', 'global', 'regions',
+        'geographies', 'platforms', 'categories', 'products', 'cognitive',
+        'compliance', 'first', 'certifications', 'competition'];
     if (factToQuery === 'random') {
         factToQuery = FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
     }
@@ -46,7 +53,7 @@ function buildFactResponseDatastore(factToQuery) {
             })
             .catch(err => {
                 console.log(`Error: ${err}`);
-                reject(`Sorry, I don't know the fact, ${factToQuery}.`);
+                reject(`Sorry, I don\'t know the fact, ${factToQuery}.`);
             });
     });
 }
@@ -58,14 +65,26 @@ app.intent('Azure Facts Intent', async (conv, {facts}) => {
 
     // Respond with a fact and end the conversation.
     let fact = await buildFactResponseDatastore(factToQuery);
-    // conv.ask(`${prefix} ${fact.response}`);
-    // conv.ask(new BasicCard({
-    //     title: fact.title,
-    //     image: `${BUCKET}/${fact.image}`,
-    //     alt: fact.title,
+
+    if (conv.hasScreen) {
+        // conv.ask(fact.response);
+        conv.close(new BasicCard({
+            title: fact.title,
+            image: `${BUCKET}/${fact.image}`,
+            alt: fact.title,
+            url: 'https://azure.microsoft.com'
+        }));
+    }
+    // conv.close(new SimpleResponse({
+    //     speech: fact.response,
+    //     text: fact.response,
     // }));
 
-    conv.close(fact.response);
+    // conv.close(fact.response);
+});
+
+app.intent('Default Welcome Intent', conv => {
+    conv.ask('Hi, I am in welcome intent.')
 });
 
 // Set the DialogflowApp object to handle the HTTPS POST request.
