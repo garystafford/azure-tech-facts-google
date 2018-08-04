@@ -126,23 +126,41 @@ const entities = [{
       }
     ]
   }, {
-    key: datastore.key(["AzureFact", "platforms"]),
+    key: datastore.key(["AzureFact", "functions"]),
     data: [{
         name: "response",
-        value: "According to Wikipedia, Azure provides Software as a Service (SaaS), Containers as a Service (CaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS).",
+        value: "According to Microsoft, Azure Functions is a serverless compute service that enables you to run code on-demand without having to explicitly provision or manage infrastructure.",
         excludeFromIndexes: true,
       },
       {
         name: "title",
-        value: "Azure Platforms",
+        value: "Azure Functiona",
         excludeFromIndexes: true,
       },
       {
         name: "image",
-        value: "image-10.png",
+        value: "image-14.png",
         excludeFromIndexes: true,
       }
     ]
+  }, {
+        key: datastore.key(["AzureFact", "platforms"]),
+        data: [{
+            name: "response",
+            value: "According to Wikipedia, Azure provides Software as a Service (SaaS), Containers as a Service (CaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS).",
+            excludeFromIndexes: true,
+        },
+            {
+                name: "title",
+                value: "Azure Platforms",
+                excludeFromIndexes: true,
+            },
+            {
+                name: "image",
+                value: "image-10.png",
+                excludeFromIndexes: true,
+            }
+        ]
   }, {
     key: datastore.key(["AzureFact", "categories"]),
     data: [{

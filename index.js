@@ -31,19 +31,23 @@ app.middleware(conv => {
 const IMAGE_BUCKET = 'https://storage.googleapis.com/azure-tech-facts';
 
 const SUGGESTION_1 = 'Tell me a random fact';
-const SUGGESTION_2 = 'Cognitive Services?';
-const SUGGESTION_3 = 'Goodbye';
+const SUGGESTION_2 = 'Tell me about regions?';
+const SUGGESTION_3 = 'Cognitive Services?';
+const SUGGESTION_4 = 'Goodbye';
+
+const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Products, Azure Functions" +
+    "Geographies, Global Presence, Platforms, Product Categories, Products, Regions, and Release Date";
+
+function getRandomFact() {
+    const FACTS_ARRAY = ['description', 'released', 'global', 'regions',
+        'geographies', 'platforms', 'categories', 'products', 'cognitive',
+        'compliance', 'first', 'certifications', 'competition', 'functions'];
+    let factToQuery = FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
+    return factToQuery;
+}
 
 // Build the response
 function buildFactResponseDatastore(factToQuery) {
-    // Return a random fact
-    const FACTS_ARRAY = ['description', 'released', 'global', 'regions',
-        'geographies', 'platforms', 'categories', 'products', 'cognitive',
-        'compliance', 'first', 'certifications', 'competition'];
-    if (factToQuery === 'random') {
-        factToQuery = FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
-    }
-
     return new Promise((resolve, reject) => {
         const query = datastore
             .createQuery('AzureFact')
@@ -66,7 +70,12 @@ function buildFactResponseDatastore(factToQuery) {
 // Handle the Dialogflow intent named 'Azure Fact Intent'.
 // The intent collects a parameter named 'facts'.
 app.intent('Azure Facts Intent', async (conv, {facts}) => {
-    const factToQuery = facts.toString();
+    let factToQuery = facts.toString();
+
+    // Return a random fact
+    if (factToQuery === 'random') {
+        factToQuery = getRandomFact();
+    }
 
     // Respond with a fact
     let fact = await buildFactResponseDatastore(factToQuery);
@@ -75,9 +84,9 @@ app.intent('Azure Facts Intent', async (conv, {facts}) => {
         conv.ask(fact.response);
         return;
     }
-
     conv.ask(new SimpleResponse({
         speech: fact.response,
+        text: `Sure, here\'s a fact about ${fact.title}`,
     }));
 
     // Create a basic card
@@ -91,16 +100,17 @@ app.intent('Azure Facts Intent', async (conv, {facts}) => {
         display: 'CROPPED',
     }));
 
-    conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2]));
+    conv.ask(new Suggestions(SUGGESTION_1));
 
 });
 
 app.intent('Welcome Intent', conv => {
     const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure?';
-    const WELCOME_TEXT_LONG = 'What would you like to know about Microsoft Azure? ' +
+    const WELCOME_TEXT_LONG = 'What would you like to know about Microsoft Azure?  \n' +
         'You can say things like:  \n' +
-        '_Tell me about Azure\'s global infrastructure_  \n' +
-        '_When was Azure released?_';
+        '_\'tell me about Azure certifications\'_  \n' +
+        '_\'when was Azure released\'_  \n' +
+        '_\'give me a random fact\'_';
     const WELCOME_IMAGE = 'azure-logo-192x192.png';
 
     if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
@@ -124,7 +134,7 @@ app.intent('Welcome Intent', conv => {
         display: 'CROPPED',
     }));
 
-    conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2]));
+    conv.ask(new Suggestions(SUGGESTION_1));
 
 });
 

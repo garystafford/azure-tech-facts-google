@@ -17,6 +17,9 @@ gcloud datastore export --namespaces="(default)" gs://${BUCKET}
 
 gcloud beta auth application-default login
 
+# upload Datastore entities
+node ./data/upsert-entities.js 
+
 # update or runtime nodejs8 may be unknown...
 gcloud components update
 
