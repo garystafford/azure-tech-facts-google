@@ -4,6 +4,8 @@
 
 'use strict';
 
+/* CONSTANTS */
+
 const {
     dialogflow,
     Suggestions,
@@ -26,44 +28,14 @@ app.middleware(conv => {
         conv.surface.capabilities.has('actions.capability.AUDIO_OUTPUT');
 });
 
-// GCP Storage Bucket path
 const IMAGE_BUCKET = 'https://storage.googleapis.com/azure-tech-facts';
 
 const SUGGESTION_1 = 'Tell me a random fact';
 const SUGGESTION_2 = 'Help';
 const SUGGESTION_3 = 'Cancel';
 
-function getRandomFact() {
-    const FACTS_ARRAY = ['description', 'released', 'global', 'regions',
-        'geographies', 'platforms', 'categories', 'products', 'cognitive',
-        'compliance', 'first', 'certifications', 'competition', 'functions'];
-    return FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
-}
 
-function buildFactResponseDatastore(factToQuery) {
-    return new Promise((resolve, reject) => {
-
-        if (factToQuery.toString().trim() === 'random') {
-            factToQuery = getRandomFact();
-        }
-
-        const query = datastore
-            .createQuery('AzureFact')
-            .filter('__key__', '=', datastore.key(['AzureFact', factToQuery]));
-
-        datastore
-            .runQuery(query)
-            .then(results => {
-                console.log(results[0][0]);
-                const factResponse = results[0][0];
-                resolve(factResponse);
-            })
-            .catch(err => {
-                console.log(`Error: ${err}`);
-                reject(`Sorry, I don\'t know the fact, ${factToQuery}.`);
-            });
-    });
-}
+/* INTENT HANDLERS */
 
 app.intent('Azure Facts Intent', async (conv, {facts}) => {
     let factToQuery = facts.toString();
@@ -125,7 +97,7 @@ app.intent('Welcome Intent', conv => {
 });
 
 app.intent('Fallback Intent', conv => {
-    const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Products, Azure Functions, " +
+    const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Services, Azure Functions, " +
         "Geographies, Global Presence, Platforms, Product Categories, Products, Regions, and Release Date";
     const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure?';
     const WELCOME_TEXT_LONG = `Current facts include: ${FACTS_LIST}.`;
@@ -153,5 +125,43 @@ app.intent('Fallback Intent', conv => {
 
     conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2, SUGGESTION_3]));
 });
+
+
+/* HELPER FUNCTIONS */
+
+function getRandomFact() {
+    const FACTS_ARRAY = ['description', 'released', 'global', 'regions',
+        'geographies', 'platforms', 'categories', 'products', 'cognitive',
+        'compliance', 'first', 'certifications', 'competition', 'functions'];
+    return FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
+}
+
+function buildFactResponseDatastore(factToQuery) {
+    return new Promise((resolve, reject) => {
+
+        if (factToQuery.toString().trim() === 'random') {
+            factToQuery = getRandomFact();
+        }
+
+        const query = datastore
+            .createQuery('AzureFact')
+            .filter('__key__', '=', datastore.key(['AzureFact', factToQuery]));
+
+        datastore
+            .runQuery(query)
+            .then(results => {
+                console.log(results[0][0]);
+                const factResponse = results[0][0];
+                resolve(factResponse);
+            })
+            .catch(err => {
+                console.log(`Error: ${err}`);
+                reject(`Sorry, I don\'t know the fact, ${factToQuery}.`);
+            });
+    });
+}
+
+
+/* ENTRY POINT */
 
 exports.functionAzureFactsAction = functions.https.onRequest(app);
