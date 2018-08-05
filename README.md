@@ -7,12 +7,13 @@
 
 
 ```bash
-export PROJECT_ID="payx-tech-facts"
+export PROJECT_ID="azure-tech-facts"
 export REGION="us-central1"
-export BUCKET="facts-import-export-gstafford"
+export BUCKET="azure-tech-facts-gstafford"
+
+gcloud auth login
 
 gcloud config set project ${PROJECT_ID}
-gcloud auth login
 
 # Create Storage Bucket
 gsutil mb \
@@ -20,6 +21,9 @@ gsutil mb \
   -c regional \
   -l ${REGION} \
    gs://${BUCKET}
+
+
+gsutil iam ch allUsers:objectViewer gs://${BUCKET}
 
 # Update or runtime nodejs8 may be unknown...
 gcloud components update

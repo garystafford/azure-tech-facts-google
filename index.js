@@ -28,7 +28,7 @@ app.middleware(conv => {
         conv.surface.capabilities.has('actions.capability.AUDIO_OUTPUT');
 });
 
-const IMAGE_BUCKET = 'https://storage.googleapis.com/azure-tech-facts';
+const IMAGE_BUCKET = 'https://storage.googleapis.com/azure-tech-facts-gstafford';
 
 const SUGGESTION_1 = 'Tell me a random fact';
 const SUGGESTION_2 = 'Help';
@@ -71,7 +71,7 @@ app.intent('Welcome Intent', conv => {
         '   _\'tell me about Azure certifications\'_  \n' +
         '   _\'when was Azure released\'_  \n' +
         '   _\'give me a random fact\'_';
-    const WELCOME_IMAGE = 'azure-logo-192x192.png';
+    const WELCOME_IMAGE = 'image-16.png';
 
     if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
         conv.ask(WELCOME_TEXT_SHORT);

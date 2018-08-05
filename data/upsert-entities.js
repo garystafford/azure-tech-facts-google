@@ -264,7 +264,20 @@ const ENTITIES = [{
 
 /* HELPER FUNCTIONS */
 
-function findFact(myFact) {
+function upsertFacts(entities) {
+    return new Promise((resolve, reject) => {
+        datastore
+            .upsert(entities)
+            .then(() => {
+                resolve(`${entities.length} entities upserted successfully.`);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+}
+
+function queryFact(myFact) {
     const query = datastore
         .createQuery('AzureFact')
         .filter('__key__', '=', datastore.key(['AzureFact', myFact]));
@@ -281,26 +294,13 @@ function findFact(myFact) {
     });
 }
 
-function upsertFacts(entities) {
-    return new Promise((resolve, reject) => {
-        datastore
-            .upsert(entities)
-            .then(() => {
-                resolve(`${entities.length} entities upserted successfully.`);
-            })
-            .catch(err => {
-                reject(err);
-            });
-    });
-}
-
 
 /* ENTRY POINT */
 
 upsertFacts(ENTITIES)
     .then(results => {
         console.log(results);
-        findFact('competition')
+        queryFact('competition')
             .then(results => {
                 console.log(results);
             })
