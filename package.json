@@ -1,6 +1,6 @@
 {
-  "name": "dialogflowFirebaseFulfillment",
-  "description": "This is the default fulfillment for a Dialogflow agents using Cloud Functions for Firebase",
+  "name": "Azure Tech Facts",
+  "description": "Action for Google Assistant",
   "version": "1.0.0",
   "private": true,
   "license": "Apache Version 2.0",
@@ -9,8 +9,8 @@
     "node": ">=8"
   },
   "scripts": {
-    "start": "firebase serve --only functions:dialogflowFirebaseFulfillment",
-    "deploy": "firebase deploy --only functions:dialogflowFirebaseFulfillment"
+    "start": "firebase serve --only functions:functionAzureFactsAction",
+    "deploy": "firebase deploy --only functions:functionAzureFactsAction"
   },
   "dependencies": {
     "@google-cloud/datastore": "^1.4.1",
