@@ -30,9 +30,9 @@ app.middleware(conv => {
 
 const IMAGE_BUCKET = 'https://storage.googleapis.com/azure-tech-facts-gstafford';
 
-const SUGGESTION_1 = 'Tell me a random fact';
-const SUGGESTION_2 = 'Help';
-const SUGGESTION_3 = 'Cancel';
+const SUGGESTION_1 = 'tell me a random fact';
+const SUGGESTION_2 = 'help';
+const SUGGESTION_3 = 'cancel';
 
 
 /* INTENT HANDLERS */

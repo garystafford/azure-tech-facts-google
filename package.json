@@ -1,5 +1,5 @@
 {
-  "name": "Azure Tech Facts",
+  "name": "functionAzureFactsAction",
   "description": "Action for Google Assistant",
   "version": "1.0.0",
   "private": true,
