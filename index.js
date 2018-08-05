@@ -132,7 +132,7 @@ app.intent('Fallback Intent', conv => {
     const WELCOME_IMAGE = 'image-15.png';
 
     if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-        conv.ask(WELCOME_TEXT_SHORT);
+        conv.ask(WELCOME_TEXT_LONG);
         return;
     }
 
