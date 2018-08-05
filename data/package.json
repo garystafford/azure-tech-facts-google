@@ -1,5 +1,5 @@
 {
-  "name": "upsert-entities-datastore",
+  "name": "Azure Tech Facts",
   "description": "Upsert entities into datastore",
   "version": "1.0.0",
   "private": true,
