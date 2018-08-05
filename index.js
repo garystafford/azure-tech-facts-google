@@ -40,7 +40,7 @@ const SUGGESTION_3 = 'Cancel';
 app.intent('Azure Facts Intent', async (conv, {facts}) => {
     let factToQuery = facts.toString();
 
-    let fact = await buildFactResponseDatastore(factToQuery);
+    let fact = await buildFactResponse(factToQuery);
 
     if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
         conv.ask(fact.response);
@@ -97,8 +97,8 @@ app.intent('Welcome Intent', conv => {
 });
 
 app.intent('Fallback Intent', conv => {
-    const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Services, Azure Functions, " +
-        "Geographies, Global Presence, Platforms, Product Categories, Products, Regions, and Release Date";
+    const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Offering, Functions, " +
+        "Geographies, Global Infrastructure, Platforms, Categories, Products, Regions, and Release Date";
     const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure?';
     const WELCOME_TEXT_LONG = `Current facts include: ${FACTS_LIST}.`;
     const WELCOME_IMAGE = 'image-15.png';
@@ -115,7 +115,7 @@ app.intent('Fallback Intent', conv => {
 
     conv.ask(new BasicCard({
         text: WELCOME_TEXT_LONG,
-        title: 'Azure Tech Facts',
+        title: 'Azure Tech Facts Help',
         image: new Image({
             url: `${IMAGE_BUCKET}/${WELCOME_IMAGE}`,
             alt: 'Azure Tech Facts',
@@ -129,18 +129,18 @@ app.intent('Fallback Intent', conv => {
 
 /* HELPER FUNCTIONS */
 
-function getRandomFact() {
+function selectRandomFact() {
     const FACTS_ARRAY = ['description', 'released', 'global', 'regions',
         'geographies', 'platforms', 'categories', 'products', 'cognitive',
         'compliance', 'first', 'certifications', 'competition', 'functions'];
     return FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
 }
 
-function buildFactResponseDatastore(factToQuery) {
+function buildFactResponse(factToQuery) {
     return new Promise((resolve, reject) => {
 
         if (factToQuery.toString().trim() === 'random') {
-            factToQuery = getRandomFact();
+            factToQuery = selectRandomFact();
         }
 
         const query = datastore

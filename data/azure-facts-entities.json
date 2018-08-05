@@ -1,0 +1,78 @@
+[
+  {
+    "value": "certifications",
+    "synonyms": [
+      "certifications",
+      "certification",
+      "certification exam",
+      "certification exams"
+    ]
+  },
+  {
+    "value": "cognitive",
+    "synonyms": [
+      "cognitive",
+      "cognitive services",
+      "cognitive service"
+    ]
+  },
+  {
+    "value": "competition",
+    "synonyms": [
+      "competition",
+      "competitors",
+      "competitor"
+    ]
+  },
+  {
+    "value": "first",
+    "synonyms": [
+      "first",
+      "first service",
+      "first services",
+      "first offering",
+      "first feature"
+    ]
+  },
+  {
+    "value": "geographies",
+    "synonyms": [
+      "geographies",
+      "geography"
+    ]
+  },
+  {
+    "value": "global",
+    "synonyms": [
+      "global",
+      "worldwide",
+      "global infrastructure"
+    ]
+  },
+  {
+    "value": "products",
+    "synonyms": [
+      "products",
+      "product",
+      "service",
+      "services",
+      "offering"
+    ]
+  },
+  {
+    "value": "regions",
+    "synonyms": [
+      "regions",
+      "regional",
+      "regional infrastructure"
+    ]
+  },
+  {
+    "value": "released",
+    "synonyms": [
+      "released",
+      "release",
+      "release date"
+    ]
+  }
+]
