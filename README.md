@@ -8,24 +8,31 @@
 
 ```bash
 export PROJECT_ID="payx-tech-facts"
+export REGION="us-central1"
+export BUCKET="facts-import-export-gstafford"
+
 gcloud config set project ${PROJECT_ID}
 gcloud auth login
 
-export BUCKET="facts-import-export-gstafford"
-gcloud datastore export --namespaces="(default)" gs://${BUCKET}
+# Create Storage Bucket
+gsutil mb \
+  -p ${PROJECT_ID} \
+  -c regional \
+  -l ${REGION} \
+   gs://${BUCKET}
 
+# Update or runtime nodejs8 may be unknown...
+gcloud components update
 
 gcloud beta auth application-default login
 
 # upload Datastore entities
 node ./data/upsert-entities.js 
 
-# update or runtime nodejs8 may be unknown...
-gcloud components update
-
+# Deploy Cloud Function
 gcloud beta functions deploy functionAzureFactsAction \
   --runtime nodejs8 \
-  --region us-central1 \
+  --region ${REGION} \
   --trigger-http \
   --memory 256MB \
   --verbosity info
