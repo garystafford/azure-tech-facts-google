@@ -22,3 +22,5 @@ data/
 README.md
 package-lock.json
 privacy.html
+LICENSE.txt
+bucket-uploader.sh
