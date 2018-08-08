@@ -36,31 +36,6 @@ const SUGGESTION_3 = 'cancel';
 
 /* INTENT HANDLERS */
 
-app.intent('Azure Facts Intent', async (conv, {facts}) => {
-    let factToQuery = facts.toString();
-
-    let fact = await buildFactResponse(factToQuery);
-
-    conv.ask(new SimpleResponse({
-        speech: fact.response,
-        text: `Sure, here\'s a fact about ${fact.title}`,
-    }));
-
-    if (conv.hasScreen) {
-        conv.ask(new BasicCard({
-            text: fact.response,
-            title: fact.title,
-            image: new Image({
-                url: `${IMAGE_BUCKET}/${fact.image}`,
-                alt: fact.title,
-            }),
-            display: 'WHITE',
-        }));
-
-        conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2, SUGGESTION_3]));
-    }
-});
-
 app.intent('Welcome Intent', conv => {
     const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure?';
     const WELCOME_TEXT_LONG = 'What would you like to know about Microsoft Azure?  \n' +
@@ -109,6 +84,31 @@ app.intent('Fallback Intent', conv => {
             image: new Image({
                 url: `${IMAGE_BUCKET}/${WELCOME_IMAGE}`,
                 alt: 'Azure Tech Facts',
+            }),
+            display: 'WHITE',
+        }));
+
+        conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2, SUGGESTION_3]));
+    }
+});
+
+app.intent('Azure Facts Intent', async (conv, {facts}) => {
+    let factToQuery = facts.toString();
+
+    let fact = await buildFactResponse(factToQuery);
+
+    conv.ask(new SimpleResponse({
+        speech: fact.response,
+        text: `Sure, here\'s a fact about ${fact.title}`,
+    }));
+
+    if (conv.hasScreen) {
+        conv.ask(new BasicCard({
+            text: fact.response,
+            title: fact.title,
+            image: new Image({
+                url: `${IMAGE_BUCKET}/${fact.image}`,
+                alt: fact.title,
             }),
             display: 'WHITE',
         }));
