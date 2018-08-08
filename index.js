@@ -124,12 +124,12 @@ function selectRandomFact() {
     const FACTS_ARRAY = ['description', 'released', 'global', 'regions',
         'geographies', 'platforms', 'categories', 'products', 'cognitive',
         'compliance', 'first', 'certifications', 'competition', 'functions'];
+
     return FACTS_ARRAY[Math.floor(Math.random() * FACTS_ARRAY.length)];
 }
 
 function buildFactResponse(factToQuery) {
     return new Promise((resolve, reject) => {
-
         if (factToQuery.toString().trim() === 'random') {
             factToQuery = selectRandomFact();
         }
@@ -141,9 +141,7 @@ function buildFactResponse(factToQuery) {
         datastore
             .runQuery(query)
             .then(results => {
-                console.log(results[0][0]);
-                const factResponse = results[0][0];
-                resolve(factResponse);
+                resolve(results[0][0]);
             })
             .catch(err => {
                 console.log(`Error: ${err}`);
