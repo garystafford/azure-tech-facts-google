@@ -1,3 +1,7 @@
+// author: Gary A. Stafford
+// site: https://programmaticponderings.com
+// license: MIT License
+
 'use strict';
 
 // gcloud beta auth application-default login

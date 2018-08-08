@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# author: Gary A. Stafford
+# site: https://programmaticponderings.com
+# license: MIT License
+
 set -ex
 
 # Set constants

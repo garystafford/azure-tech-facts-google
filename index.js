@@ -10,7 +10,6 @@ const {
     dialogflow,
     Suggestions,
     BasicCard,
-    Button,
     SimpleResponse,
     Image,
 } = require('actions-on-google');
@@ -42,26 +41,24 @@ app.intent('Azure Facts Intent', async (conv, {facts}) => {
 
     let fact = await buildFactResponse(factToQuery);
 
-    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-        conv.ask(fact.response);
-        return;
-    }
     conv.ask(new SimpleResponse({
         speech: fact.response,
         text: `Sure, here\'s a fact about ${fact.title}`,
     }));
 
-    conv.ask(new BasicCard({
-        text: fact.response,
-        title: fact.title,
-        image: new Image({
-            url: `${IMAGE_BUCKET}/${fact.image}`,
-            alt: fact.title,
-        }),
-        display: 'WHITE',
-    }));
+    if (conv.hasScreen) {
+        conv.ask(new BasicCard({
+            text: fact.response,
+            title: fact.title,
+            image: new Image({
+                url: `${IMAGE_BUCKET}/${fact.image}`,
+                alt: fact.title,
+            }),
+            display: 'WHITE',
+        }));
 
-    conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2, SUGGESTION_3]));
+        conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2, SUGGESTION_3]));
+    }
 });
 
 app.intent('Welcome Intent', conv => {
@@ -73,27 +70,24 @@ app.intent('Welcome Intent', conv => {
         '   _\'give me a random fact\'_';
     const WELCOME_IMAGE = 'image-16.png';
 
-    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-        conv.ask(WELCOME_TEXT_SHORT);
-        return;
-    }
-
     conv.ask(new SimpleResponse({
         speech: WELCOME_TEXT_SHORT,
         text: WELCOME_TEXT_SHORT,
     }));
 
-    conv.ask(new BasicCard({
-        text: WELCOME_TEXT_LONG,
-        title: 'Azure Tech Facts',
-        image: new Image({
-            url: `${IMAGE_BUCKET}/${WELCOME_IMAGE}`,
-            alt: 'Azure Tech Facts',
-        }),
-        display: 'WHITE',
-    }));
+    if (conv.hasScreen) {
+        conv.ask(new BasicCard({
+            text: WELCOME_TEXT_LONG,
+            title: 'Azure Tech Facts',
+            image: new Image({
+                url: `${IMAGE_BUCKET}/${WELCOME_IMAGE}`,
+                alt: 'Azure Tech Facts',
+            }),
+            display: 'WHITE',
+        }));
 
-    conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2, SUGGESTION_3]));
+        conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2, SUGGESTION_3]));
+    }
 });
 
 app.intent('Fallback Intent', conv => {
@@ -103,27 +97,24 @@ app.intent('Fallback Intent', conv => {
     const WELCOME_TEXT_LONG = `Current facts include: ${FACTS_LIST}.`;
     const WELCOME_IMAGE = 'image-15.png';
 
-    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-        conv.ask(WELCOME_TEXT_LONG);
-        return;
-    }
-
     conv.ask(new SimpleResponse({
         speech: WELCOME_TEXT_SHORT,
         text: WELCOME_TEXT_SHORT,
     }));
 
-    conv.ask(new BasicCard({
-        text: WELCOME_TEXT_LONG,
-        title: 'Azure Tech Facts Help',
-        image: new Image({
-            url: `${IMAGE_BUCKET}/${WELCOME_IMAGE}`,
-            alt: 'Azure Tech Facts',
-        }),
-        display: 'WHITE',
-    }));
+    if (conv.hasScreen) {
+        conv.ask(new BasicCard({
+            text: WELCOME_TEXT_LONG,
+            title: 'Azure Tech Facts Help',
+            image: new Image({
+                url: `${IMAGE_BUCKET}/${WELCOME_IMAGE}`,
+                alt: 'Azure Tech Facts',
+            }),
+            display: 'WHITE',
+        }));
 
-    conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2, SUGGESTION_3]));
+        conv.ask(new Suggestions([SUGGESTION_1, SUGGESTION_2, SUGGESTION_3]));
+    }
 });
 
 
