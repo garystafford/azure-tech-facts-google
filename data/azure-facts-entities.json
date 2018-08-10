@@ -35,6 +35,15 @@
     ]
   },
   {
+    "value": "functions",
+    "synonyms": [
+      "functions",
+      "serverless functions",
+      "function as a service",
+      "functions as a service"
+    ]
+  },
+  {
     "value": "geographies",
     "synonyms": [
       "geographies",
