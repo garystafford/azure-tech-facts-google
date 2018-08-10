@@ -1,9 +1,9 @@
 {
   "name": "Azure Tech Facts",
-  "description": "Upsert entities into datastore",
+  "description": "Upsert Entities into Cloud Datastore",
   "version": "1.0.0",
   "private": true,
-  "license": "Apache Version 2.0",
+  "license": "MIT License",
   "author": "Gary A. Stafford",
   "engines": {
     "node": ">=8"
