@@ -9,7 +9,7 @@
 ```bash
 export PROJECT_ID="azure-tech-facts"
 export REGION="us-central1"
-export BUCKET="azure-tech-facts-gstafford"
+export IMAGE_BUCKET="azure-tech-facts-gstafford"
 
 gcloud auth login
 
@@ -20,7 +20,7 @@ gsutil mb \
   -p ${PROJECT_ID} \
   -c regional \
   -l ${REGION} \
-   gs://${BUCKET}
+   gs://${IMAGE_BUCKET}
 
 
 gsutil iam ch allUsers:objectViewer gs://${BUCKET}
@@ -39,6 +39,5 @@ gcloud beta functions deploy functionAzureFactsAction \
   --region ${REGION} \
   --trigger-http \
   --memory 256MB \
-  --env-vars-file .env.yaml \
-  --verbosity info
+  --env-vars-file .env.yaml
 ```

@@ -1,8 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # author: Gary A. Stafford
 # site: https://programmaticponderings.com
 # license: MIT License
+
+# Create Storage bucket and upload public images
 
 set -ex
 

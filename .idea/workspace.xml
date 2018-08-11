@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f626777-e377-4716-82a8-1c2d57f100fe" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.env.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gcloudignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gcloudignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy-cloud-function.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bucket-uploader.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bucket-uploader.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,31 +23,28 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="639">
-                <caret line="43" selection-start-line="36" selection-end-line="43" />
+              <first_editor relative-caret-position="624">
+                <caret line="42" selection-start-line="36" selection-end-line="42" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.js">
+      <file leaf-file-name="deploy-cloud-function.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/deploy-cloud-function.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="29" column="45" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="45" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gcloudignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gcloudignore">
+      <file leaf-file-name="bucket-uploader.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bucket-uploader.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -97,11 +92,12 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/data/.env.yaml file" />
         <option value="$PROJECT_DIR$/.env.yaml file" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/.env.yaml" />
-        <option value="$PROJECT_DIR$/bucket-uploader.sh" />
         <option value="$PROJECT_DIR$/.gcloudignore" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/deploy-cloud-function.sh" />
+        <option value="$PROJECT_DIR$/bucket-uploader.sh" />
       </list>
     </option>
   </component>
@@ -196,12 +192,12 @@
       <option name="presentableId" value="Default" />
       <updated>1533092590012</updated>
       <workItem from="1533092592144" duration="39914000" />
-      <workItem from="1533504432895" duration="21270000" />
+      <workItem from="1533504432895" duration="21785000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61184000" />
+    <option name="totallyTimeSpent" value="61699000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -348,16 +344,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="639">
-            <caret line="43" selection-start-line="36" selection-end-line="43" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -365,17 +351,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bucket-uploader.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="55" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="15" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gcloudignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -389,10 +375,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gcloudignore">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="624">
+            <caret line="42" selection-start-line="36" selection-end-line="42" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy-cloud-function.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+        <state relative-caret-position="105">
+          <caret line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bucket-uploader.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-end-line="29" />
         </state>
       </provider>
     </entry>
