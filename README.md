@@ -39,5 +39,6 @@ gcloud beta functions deploy functionAzureFactsAction \
   --region ${REGION} \
   --trigger-http \
   --memory 256MB \
+  --env-vars-file .env.yaml \
   --verbosity info
 ```

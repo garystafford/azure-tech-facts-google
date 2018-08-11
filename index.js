@@ -27,7 +27,7 @@ app.middleware(conv => {
         conv.surface.capabilities.has('actions.capability.AUDIO_OUTPUT');
 });
 
-const IMAGE_BUCKET = 'https://storage.googleapis.com/azure-tech-facts-gstafford';
+const IMAGE_BUCKET = process.env.IMAGE_BUCKET;
 
 const SUGGESTION_1 = 'tell me a random fact';
 const SUGGESTION_2 = 'help';

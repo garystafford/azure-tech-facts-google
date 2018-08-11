@@ -7,21 +7,21 @@
 set -ex
 
 # Set constants
-export PROJECT_ID="azure-tech-facts"
-export REGION="us-central1"
-export BUCKET="azure-tech-facts-gstafford"
+PROJECT_ID="<your_project_id>"
+REGION="<your_region>"
+IMAGE_BUCKET="<your_bucket_name>"
 
 # Create GCP Storage Bucket
 gsutil mb \
   -p ${PROJECT_ID} \
   -c regional \
   -l ${REGION} \
-   gs://${BUCKET}
+   gs://${IMAGE_BUCKET}
 
 # Upload images to bucket
 for file in pics/image-*; do
-  gsutil cp ${file} gs://${BUCKET}
+  gsutil cp ${file} gs://${IMAGE_BUCKET}
 done
 
 # Make all images public in bucket
-gsutil iam ch allUsers:objectViewer gs://${BUCKET}
+gsutil iam ch allUsers:objectViewer gs://${IMAGE_BUCKET}

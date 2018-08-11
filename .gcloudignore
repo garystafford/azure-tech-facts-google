@@ -24,3 +24,4 @@ package-lock.json
 privacy.html
 LICENSE.txt
 bucket-uploader.sh
+.env.yaml
