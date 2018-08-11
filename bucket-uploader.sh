@@ -4,8 +4,6 @@
 # site: https://programmaticponderings.com
 # license: MIT License
 
-# Create Storage bucket and upload public images
-
 set -ex
 
 # Set constants

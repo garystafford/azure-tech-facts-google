@@ -4,13 +4,13 @@
 # site: https://programmaticponderings.com
 # license: MIT License
 
-# Deploy the Google Cloud Function
-
 set -ex
 
+# Set constants
 REGION="<your_region>"
 FUNCTION_NAME="<your_function_name>"
 
+# Deploy the Google Cloud Function
 gcloud beta functions deploy ${FUNCTION_NAME} \
   --runtime nodejs8 \
   --region ${REGION} \

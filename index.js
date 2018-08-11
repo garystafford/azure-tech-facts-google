@@ -38,11 +38,11 @@ const SUGGESTION_3 = 'cancel';
 
 app.intent('Welcome Intent', conv => {
     const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure?';
-    const WELCOME_TEXT_LONG = 'What would you like to know about Microsoft Azure?  \n' +
+    const WELCOME_TEXT_LONG = 'What would you like to know about Microsoft Azure? ' +
         'You can say things like:  \n' +
-        '   _\'tell me about Azure certifications\'_  \n' +
-        '   _\'when was Azure released\'_  \n' +
-        '   _\'give me a random fact\'_';
+        '\t_\'tell me about Azure certifications\'_  \n' +
+        '\t_\'when was Azure released\'_  \n' +
+        '\t_\'give me a random fact\'_';
     const WELCOME_IMAGE = 'image-16.png';
 
     conv.ask(new SimpleResponse({
@@ -68,12 +68,12 @@ app.intent('Welcome Intent', conv => {
 app.intent('Fallback Intent', conv => {
     const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Offering, Functions, " +
         "Geographies, Global Infrastructure, Platforms, Categories, Products, Regions, and Release Date";
-    const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure?';
+    const WELCOME_TEXT_SHORT = 'Need a little help?';
     const WELCOME_TEXT_LONG = `Current facts include: ${FACTS_LIST}.`;
     const WELCOME_IMAGE = 'image-15.png';
 
     conv.ask(new SimpleResponse({
-        speech: WELCOME_TEXT_SHORT,
+        speech: WELCOME_TEXT_LONG,
         text: WELCOME_TEXT_SHORT,
     }));
 
@@ -94,12 +94,13 @@ app.intent('Fallback Intent', conv => {
 
 app.intent('Azure Facts Intent', async (conv, {facts}) => {
     let factToQuery = facts.toString();
-
     let fact = await buildFactResponse(factToQuery);
+
+    const AZURE_TEXT_SHORT = `Sure, here\'s a fact about ${fact.title}`;
 
     conv.ask(new SimpleResponse({
         speech: fact.response,
-        text: `Sure, here\'s a fact about ${fact.title}`,
+        text: AZURE_TEXT_SHORT,
     }));
 
     if (conv.hasScreen) {
