@@ -1,43 +1,14 @@
-- <https://cloud.google.com/functions/docs/concepts/nodejs-8-runtime>
-- <https://github.com/googleapis/nodejs-datastore/tree/master/samples>
-- <https://cloud.google.com/datastore/docs/concepts/queries>
-- <https://github.com/actions-on-google/actions-on-google-nodejs/issues/174>
--<https://developers.google.com/actions/assistant/responses>
--<https://github.com/actions-on-google/dialogflow-facts-about-google-nodejs/blob/master/functions/index.js>
+# Azure Tech Facts Action for Google Assistant
+Project created for the post, [Building Serverless Actions for Google Assistant with Cloud Functions, Datastore, Storage, and Node.js](https://programmaticponderings.com/). In this post, we will create an Action for Google Assistant using the ‘Actions on Google’ development platform, Google Cloud Platform’s serverless Cloud Functions, Cloud Datastore, and Cloud Storage, and the current LTS version of Node.js. According to Google, Actions are pieces of software, designed to extend the functionality of the Google Assistant, Google’s virtual personal assistant, across a multitude of Google-enabled devices, including smartphones, cars, televisions, headphones, watches, and smart-speakers.
 
+## Preview
 
-```bash
-export PROJECT_ID="azure-tech-facts"
-export REGION="us-central1"
-export IMAGE_BUCKET="azure-tech-facts-gstafford"
+Here is a brief preview of the final Action for Google Assistant, we will explore in this post, running on an Apple iPhone 8.
 
-gcloud auth login
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DSONmyl_XdY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-gcloud config set project ${PROJECT_ID}
+## Architecture
 
-# Create Storage Bucket
-gsutil mb \
-  -p ${PROJECT_ID} \
-  -c regional \
-  -l ${REGION} \
-   gs://${IMAGE_BUCKET}
+The final architecture of our Action for Google Assistant will look as follows.
 
-
-gsutil iam ch allUsers:objectViewer gs://${BUCKET}
-
-# Update or runtime nodejs8 may be unknown...
-gcloud components update
-
-gcloud beta auth application-default login
-
-# upload Datastore entities
-node ./data/upsert-entities.js 
-
-# Deploy Cloud Function
-gcloud beta functions deploy functionAzureFactsAction \
-  --runtime nodejs8 \
-  --region ${REGION} \
-  --trigger-http \
-  --memory 256MB \
-  --env-vars-file .env.yaml
-```
+![Google-Assistant-Architecture-Final](./pics/Google-Assistant-Architecture-Final.png)
