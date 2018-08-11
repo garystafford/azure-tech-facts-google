@@ -5,7 +5,7 @@ Project created for the post, [Building Serverless Actions for Google Assistant 
 
 Here is a brief preview of the final Action for Google Assistant, we will explore in this post, running on an Apple iPhone 8.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DSONmyl_XdY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+[![Azure Tech Facts Action for Google Assistant](https://www.youtube.com/embed/DSONmyl_XdY)](https://www.youtube.com/embed/DSONmyl_XdY)
 
 ## Architecture
 
