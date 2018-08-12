@@ -40,9 +40,9 @@ app.intent('Welcome Intent', conv => {
     const WELCOME_TEXT_SHORT = 'What would you like to know about Microsoft Azure?';
     const WELCOME_TEXT_LONG = `What would you like to know about Microsoft Azure? ` +
         `You can say things like:  \n` +
-        `    _'tell me about Azure certifications'_  \n` +
-        `    _'when was Azure released'_  \n` +
-        `    _'give me a random fact'_`;
+        ` _'tell me about Azure certifications'_  \n` +
+        ` _'when was Azure released'_  \n` +
+        ` _'give me a random fact'_`;
     const WELCOME_IMAGE = 'image-16.png';
 
     conv.ask(new SimpleResponse({
