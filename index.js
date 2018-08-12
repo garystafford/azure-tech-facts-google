@@ -96,7 +96,7 @@ app.intent('Azure Facts Intent', async (conv, {facts}) => {
     let factToQuery = facts.toString();
     let fact = await buildFactResponse(factToQuery);
 
-    const AZURE_TEXT_SHORT = `Sure, here\'s a fact about ${fact.title}`;
+    const AZURE_TEXT_SHORT = `Sure, here's a fact about ${fact.title}`;
 
     conv.ask(new SimpleResponse({
         speech: fact.response,
@@ -146,7 +146,7 @@ function buildFactResponse(factToQuery) {
             })
             .catch(err => {
                 console.log(`Error: ${err}`);
-                reject(`Sorry, I don\'t know the fact, ${factToQuery}.`);
+                reject(`Sorry, I don't know the fact, ${factToQuery}.`);
             });
     });
 }
