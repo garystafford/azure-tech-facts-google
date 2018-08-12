@@ -16,41 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="deploy-cloud-function.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deploy-cloud-function.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="21" lean-forward="true" selection-end-line="18" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2045">
-              <caret line="148" column="36" lean-forward="true" selection-start-line="148" selection-start-column="36" selection-end-line="148" selection-end-column="36" />
+            <state relative-caret-position="280">
+              <caret line="46" lean-forward="true" selection-start-line="38" selection-end-line="46" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dialogflow.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/actions-on-google/dist/service/dialogflow/dialogflow.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1346">
-              <caret line="160" column="21" selection-start-line="160" selection-start-column="21" selection-end-line="160" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bucket-uploader.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bucket-uploader.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" lean-forward="true" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -198,12 +171,12 @@
       <option name="presentableId" value="Default" />
       <updated>1533092590012</updated>
       <workItem from="1533092592144" duration="39914000" />
-      <workItem from="1533504432895" duration="25554000" />
+      <workItem from="1533504432895" duration="26151000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65468000" />
+    <option name="totallyTimeSpent" value="66065000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -397,8 +370,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2045">
-          <caret line="148" column="36" lean-forward="true" selection-start-line="148" selection-start-column="36" selection-end-line="148" selection-end-column="36" />
+        <state relative-caret-position="280">
+          <caret line="46" lean-forward="true" selection-start-line="38" selection-end-line="46" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
