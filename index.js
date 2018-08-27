@@ -4,7 +4,7 @@
 
 'use strict';
 
-/* CONSTANTS */
+/* CONSTANTS AND GLOBAL VARIABLES */
 
 const {
     dialogflow,
@@ -17,6 +17,7 @@ const {
 const functions = require('firebase-functions');
 const Datastore = require('@google-cloud/datastore');
 const datastore = new Datastore({});
+const winston = require('winston');
 
 const app = dialogflow({debug: true});
 
@@ -26,6 +27,16 @@ app.middleware(conv => {
     conv.hasAudioPlayback =
         conv.surface.capabilities.has('actions.capability.AUDIO_OUTPUT');
 });
+
+// Setup Logging
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.simple(),
+    transports: [
+        new winston.transports.Console()
+    ]
+});
+
 
 const IMAGE_BUCKET = process.env.IMAGE_BUCKET;
 
@@ -68,21 +79,21 @@ app.intent('Welcome Intent', conv => {
 app.intent('Fallback Intent', conv => {
     const FACTS_LIST = "Certifications, Cognitive Services, Competition, Compliance, First Offering, Functions, " +
         "Geographies, Global Infrastructure, Platforms, Categories, Products, Regions, and Release Date";
-    const WELCOME_TEXT_SHORT = 'Need a little help?';
-    const WELCOME_TEXT_LONG = `Current facts include: ${FACTS_LIST}.`;
-    const WELCOME_IMAGE = 'image-15.png';
+    const HELP_TEXT_SHORT = 'Need a little help?';
+    const HELP_TEXT_LONG = `Current facts include: ${FACTS_LIST}.`;
+    const HELP_IMAGE = 'image-15.png';
 
     conv.ask(new SimpleResponse({
-        speech: WELCOME_TEXT_LONG,
-        text: WELCOME_TEXT_SHORT,
+        speech: HELP_TEXT_LONG,
+        text: HELP_TEXT_SHORT,
     }));
 
     if (conv.hasScreen) {
         conv.ask(new BasicCard({
-            text: WELCOME_TEXT_LONG,
+            text: HELP_TEXT_LONG,
             title: 'Azure Tech Facts Help',
             image: new Image({
-                url: `${IMAGE_BUCKET}/${WELCOME_IMAGE}`,
+                url: `${IMAGE_BUCKET}/${HELP_IMAGE}`,
                 alt: 'Azure Tech Facts',
             }),
             display: 'WHITE',
@@ -142,10 +153,11 @@ function buildFactResponse(factToQuery) {
         datastore
             .runQuery(query)
             .then(results => {
+                logger.log(`Entity: ${results[0][0]}`);
                 resolve(results[0][0]);
             })
             .catch(err => {
-                console.log(`Error: ${err}`);
+                logger.log(`Error: ${err}`);
                 reject(`Sorry, I don't know the fact, ${factToQuery}.`);
             });
     });
